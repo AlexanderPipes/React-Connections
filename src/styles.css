@@ -50,6 +50,11 @@ ul {
   box-sizing: border-box;
 }
 
+.board-game {
+  display: grid;
+  justify-content: center;
+}
+
 body {
   font-family: sans-serif;
   margin: 20px;
@@ -57,14 +62,29 @@ body {
 }
 .active.square {
   background: rgb(217, 255, 0);
-  border: 1px solid #999;
+  border: 1px solid #000000;
   float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 100px;
-  margin-right: -1px;
-  margin-top: -1px;
+  margin-right: 1px;
+  margin-top: 1px;
+  padding: 0;
+  text-align: center;
+  width: 200px;
+}
+
+.square:disabled  {
+  background: rgb(213, 213, 213);
+  border: 1px solid #000000;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 100px;
+  margin-right: 1px;
+  margin-top: 1px;
   padding: 0;
   text-align: center;
   width: 200px;
@@ -72,14 +92,14 @@ body {
 
 .square {
   background: #ffffff;
-  border: 1px solid #999;
+  border: 1px solid #000000;
   float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
   height: 100px;
-  margin-right: -1px;
-  margin-top: -1px;
+  margin-right: 1px;
+  margin-top: 1px;
   padding: 0;
   text-align: center;
   width: 200px;
@@ -88,7 +108,8 @@ body {
 .board-row:after {
   clear: both;
   content: '';
-  display: table;
+  display: flex;
+  justify-content: center;
 }
 
 .status {

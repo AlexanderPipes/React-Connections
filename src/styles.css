@@ -50,6 +50,12 @@ ul {
   box-sizing: border-box;
 }
 
+.bttn-row {
+  display: table-column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .board-game {
   display: grid;
   justify-content: center;

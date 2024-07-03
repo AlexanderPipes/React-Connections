@@ -86,7 +86,7 @@ const initialButtonState = [
     buttonID: 12
   },
   {
-    buttonName: "Wombo",
+    buttonName: "Happy",
     isActive: false,
     isEnabled: true,
     matchReason: "That ain't falco",
@@ -221,12 +221,29 @@ function Board() {
     <div className="wrapper">
     <div className="board-game">
       <div className="board">
-      {gameState.map((square, index) => (
-          <Square
-            buttonState={square}
-            onSquareClick={() => handleClick(index)}
-          />
-        ))}
+      {/* - todo: find a better way to display one box instea of the 4 disabled boxes. *
+          - if all the squares with the same match reason are disabled print 1 disabled button that dispalys the match reason
+          - write a function that checks each match reason to see if false and return a div that displays the match reason
+       */}
+      {gameState.map((square, index) => {
+        if (square.isEnabled === false) {
+            return (<Square
+              key={index}
+              buttonState={square}
+              onSquareClick={() => handleClick(index)}
+            />)
+        }
+      })}
+
+      {gameState.map((square, index) => {
+        if (square.isEnabled === true) {
+            return (<Square
+              key={index}
+              buttonState={square}
+              onSquareClick={() => handleClick(index)}
+            />)
+        }
+      })}
       </div>
       <div className="bttn-row">
         <SubmitButton

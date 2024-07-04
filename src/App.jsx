@@ -154,6 +154,7 @@ function ShuffleButton({ onShufClick, activeButtons }) {
 function Board() {
   const [gameState, setGameState] = useState(initialButtonState);
   const [disabledReasons, setDisabledReasons] = useState([]);
+  const [boardRows, setBoardRows] = useState("board-four")
   useEffect(disabledReasonArray, [gameState]);
 
 
@@ -239,18 +240,16 @@ function Board() {
   return (
     <div className="wrapper">
       <div className="board-game">
-        <div className="reasons">
-          {disabledReasons.map((reason) => {
-            return (
-              <div className="reasonBox">
-                <MatchBox key={reason.id} disabledReason={reason} />
-              </div>
-            )
-          }
+        {disabledReasons.map((reason) => {
+          return (
+            <div className="reasonBox">
+              <MatchBox key={reason.id} disabledReason={reason} />
+            </div>
+          )
+        }
 
-          )}
-        </div>
-        <div className="board">
+        )}
+        <div className="board" >
           {/* - todo: find a better way to display one box instea of the 4 disabled boxes. *
           - if all the squares with the same match reason are disabled print 1 disabled button that dispalys the match reason
           - write a function that checks each match reason to see if false and return a div that displays the match reason
@@ -264,6 +263,7 @@ function Board() {
               />)
             }
           })} */}
+
 
           {gameState.map((square, index) => {
             if (square.isEnabled === true) {

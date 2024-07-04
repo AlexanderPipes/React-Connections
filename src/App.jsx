@@ -1,4 +1,4 @@
-import { act, useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const initialButtonState = [
   {
@@ -124,6 +124,12 @@ function Square({ onSquareClick, buttonState }) {
   </button>;
 }
 
+function MatchBox({ disabledReason }) {
+  return <button className="match" disabled="disabled">
+    {disabledReason}
+  </button>;
+}
+
 function SubmitButton({ onSubClick, activeButtons }) {
   let disable = activeButtons.length === 4 ? "" : "disabled";
   return <button className="bttn" onClick={onSubClick} disabled={disable}>
@@ -139,7 +145,7 @@ function DeselectButton({ onResClick, activeButtons }) {
 }
 
 function ShuffleButton({ onShufClick, activeButtons }) {
- 
+
   return <button className="bttn" onClick={onShufClick} >
     Shuffle
   </button>;
@@ -147,6 +153,8 @@ function ShuffleButton({ onShufClick, activeButtons }) {
 
 function Board() {
   const [gameState, setGameState] = useState(initialButtonState);
+  const [disabledReasons, setDisabledReasons] = useState([]);
+  useEffect(disabledReasonArray, [gameState]);
 
 
   function handleClick(i) {
@@ -158,8 +166,6 @@ function Board() {
       let nextActive = gameState.map(a => structuredClone(a));
       nextActive[i].isActive = !gameState[i].isActive;
       setGameState(nextActive);
-      console.log(nextActive);
-      console.log(gameState);
     }
   }
 
@@ -171,7 +177,7 @@ function Board() {
       if (activeArray[0].matchReason !== activeArray[1].matchReason || activeArray[1].matchReason !== activeArray[2].matchReason ||
         activeArray[2].matchReason !== activeArray[3].matchReason) {
         console.log("not a match");
-        deselect();ewf
+        deselect();
         return;
       }
     }
@@ -205,61 +211,87 @@ function Board() {
     //copy the entire gameState and set to shuffledArray variable
     //shuffle the entire array so that each button has a new index
     let shuffledArray = gameState.map(old => structuredClone(old));
-    console.log(shuffledArray);
     let currentIndex = shuffledArray.length;
-    console.log(currentIndex);
-    while(currentIndex !== 0) {
+    while (currentIndex !== 0) {
       let randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-      [shuffledArray[currentIndex],shuffledArray[randomIndex]] = [shuffledArray[randomIndex],shuffledArray[currentIndex]]
-      
+      if (shuffledArray[currentIndex - 1].isEnabled === true && shuffledArray[randomIndex].isEnabled === true) {
+        currentIndex--;
+        [shuffledArray[currentIndex], shuffledArray[randomIndex]] = [shuffledArray[randomIndex], shuffledArray[currentIndex]]
+      }
+      else {
+        currentIndex--;
+
+      }
     }
-    console.log(shuffledArray);
     setGameState(shuffledArray);
   }
+
+  function disabledReasonArray() {
+    let nextDisabledReasonsSet = new Set();
+    for (let i = 0; i < gameState.length; i++) {
+      if (!gameState[i].isEnabled)
+        nextDisabledReasonsSet.add(gameState[i].matchReason);
+    }
+    let nextDisabledReasonsArray = Array.from(nextDisabledReasonsSet);
+    setDisabledReasons(nextDisabledReasonsArray);
+  }
+
   return (
     <div className="wrapper">
-    <div className="board-game">
-      <div className="board">
-      {/* - todo: find a better way to display one box instea of the 4 disabled boxes. *
+      <div className="board-game">
+        <div className="reasons">
+          {disabledReasons.map((reason) => {
+            return (
+              <div className="reasonBox">
+                <MatchBox key={reason.id} disabledReason={reason} />
+              </div>
+            )
+          }
+
+          )}
+        </div>
+        <div className="board">
+          {/* - todo: find a better way to display one box instea of the 4 disabled boxes. *
           - if all the squares with the same match reason are disabled print 1 disabled button that dispalys the match reason
           - write a function that checks each match reason to see if false and return a div that displays the match reason
        */}
-      {gameState.map((square, index) => {
-        if (square.isEnabled === false) {
-            return (<Square
-              key={index}
-              buttonState={square}
-              onSquareClick={() => handleClick(index)}
-            />)
-        }
-      })}
+          {/* {gameState.map((square, index) => {
+            if (square.isEnabled === false) {
+              return (<Square
+                key={index}
+                buttonState={square}
+                onSquareClick={() => handleClick(index)}
+              />)
+            }
+          })} */}
 
-      {gameState.map((square, index) => {
-        if (square.isEnabled === true) {
-            return (<Square
-              key={index}
-              buttonState={square}
-              onSquareClick={() => handleClick(index)}
-            />)
-        }
-      })}
+          {gameState.map((square, index) => {
+            if (square.isEnabled === true) {
+              return (<Square
+                key={index}
+                buttonState={square}
+                onSquareClick={() => handleClick(index)}
+              />)
+            }
+          })}
+        </div>
+        <div className="bttn-row">
+          <SubmitButton
+            activeButtons={gameState.filter((item) => item.isActive)}
+            onSubClick={() => {
+              checkMatch();
+            }}
+          />
+          <DeselectButton
+            activeButtons={gameState.filter((item) => item.isActive)}
+            onResClick={() => deselect()}
+          />
+          <ShuffleButton
+            activeButtons={gameState.filter((item) => item.isActive)}
+            onShufClick={() => shuffle()}
+          />
+        </div>
       </div>
-      <div className="bttn-row">
-        <SubmitButton
-          activeButtons={gameState.filter((item) => item.isActive)}
-          onSubClick={() => checkMatch()}
-        />
-        <DeselectButton
-          activeButtons={gameState.filter((item) => item.isActive)}
-          onResClick={() => deselect()}
-        />
-        <ShuffleButton
-          activeButtons={gameState.filter((item) => item.isActive)}
-          onShufClick={() => shuffle()}
-        />        
-      </div>
-    </div>
     </div>
   );
 }

@@ -1,14 +1,10 @@
 .bttn-row {
-  display: grid;
+  display: flex;
   margin-left: auto;
   margin-right: auto;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
   margin-top: 20px;
-}
-.bttn {
-  padding-left: 5px;
-  padding-right: 5px;
 }
 
 .board-game {
@@ -146,7 +142,7 @@ body {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  cursor: not-allowed;
+  /* cursor: not-allowed; */
 }
 
 .bttn:disabled:hover {
@@ -160,11 +156,4 @@ body {
 .bttn:active {
   box-shadow: #422800 2px 2px 0 0;
   transform: translate(2px, 2px);
-}
-
-@media (min-width: 768px) {
-  .bttn {
-    min-width: 120px;
-    padding: 0 25px;
-  }
 }

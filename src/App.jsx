@@ -227,7 +227,7 @@ function Board() {
   }
 
   function disabledReasonArray() {
-    let nextDisabledReasonsSet = new Set();
+    let nextDisabledReasonsSet = new Set(disabledReasons);
     for (let i = 0; i < gameState.length; i++) {
       if (!gameState[i].isEnabled)
         nextDisabledReasonsSet.add(gameState[i].matchReason);

@@ -1,120 +1,5 @@
 import { useState, useEffect } from 'react';
 
-const initialButtonState = [
-  {
-    buttonName: "Blue",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "Colors",
-    buttonID: 1
-  },
-  {
-    buttonName: "Red",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "Colors",
-    buttonID: 2
-  },
-  {
-    buttonName: "Green",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "Colors",
-    buttonID: 3
-  },
-  {
-    buttonName: "Yellow",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "Colors",
-    buttonID: 4
-  },
-  {
-    buttonName: "1",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "Numbers",
-    buttonID: 5
-  },
-  {
-    buttonName: "2",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "Numbers",
-    buttonID: 6
-  },
-  {
-    buttonName: "3",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "Numbers",
-    buttonID: 7
-  },
-  {
-    buttonName: "4",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "Numbers",
-    buttonID: 8
-  },
-  {
-    buttonName: "A",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "Letters",
-    buttonID: 9
-  },
-  {
-    buttonName: "B",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "Letters",
-    buttonID: 10
-  },
-  {
-    buttonName: "C",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "Letters",
-    buttonID: 11
-  },
-  {
-    buttonName: "D",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "Letters",
-    buttonID: 12
-  },
-  {
-    buttonName: "Happy",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "That ain't falco",
-    buttonID: 13
-  },
-  {
-    buttonName: "Feet",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "That ain't falco",
-    buttonID: 14
-  },
-  {
-    buttonName: "Wombo",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "That ain't falco",
-    buttonID: 15
-  },
-  {
-    buttonName: "Combo",
-    isActive: false,
-    isEnabled: true,
-    matchReason: "That ain't falco",
-    buttonID: 16
-  },
-]
-
 // when button is enabled is false I want the class to = inactive square disable
 function Square({ onSquareClick, buttonState }) {
   let classStr = buttonState.isActive ? "active square" : "inactive square";
@@ -295,3 +180,118 @@ export default function Game() {
     </>
   )
 }
+
+const initialButtonState = [
+  {
+    buttonName: "Blue",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "Colors",
+    buttonID: 1
+  },
+  {
+    buttonName: "Red",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "Colors",
+    buttonID: 2
+  },
+  {
+    buttonName: "Green",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "Colors",
+    buttonID: 3
+  },
+  {
+    buttonName: "Yellow",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "Colors",
+    buttonID: 4
+  },
+  {
+    buttonName: "1",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "Numbers",
+    buttonID: 5
+  },
+  {
+    buttonName: "2",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "Numbers",
+    buttonID: 6
+  },
+  {
+    buttonName: "3",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "Numbers",
+    buttonID: 7
+  },
+  {
+    buttonName: "4",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "Numbers",
+    buttonID: 8
+  },
+  {
+    buttonName: "A",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "Letters",
+    buttonID: 9
+  },
+  {
+    buttonName: "B",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "Letters",
+    buttonID: 10
+  },
+  {
+    buttonName: "C",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "Letters",
+    buttonID: 11
+  },
+  {
+    buttonName: "D",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "Letters",
+    buttonID: 12
+  },
+  {
+    buttonName: "Happy",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "That ain't falco",
+    buttonID: 13
+  },
+  {
+    buttonName: "Feet",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "That ain't falco",
+    buttonID: 14
+  },
+  {
+    buttonName: "Wombo",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "That ain't falco",
+    buttonID: 15
+  },
+  {
+    buttonName: "Combo",
+    isActive: false,
+    isEnabled: true,
+    matchReason: "That ain't falco",
+    buttonID: 16
+  },
+]

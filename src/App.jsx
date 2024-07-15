@@ -254,21 +254,6 @@ function Board() {
 
         )}
         <div className="board" >
-          {/* - todo: find a better way to display one box instea of the 4 disabled boxes. *
-          - if all the squares with the same match reason are disabled print 1 disabled button that dispalys the match reason
-          - write a function that checks each match reason to see if false and return a div that displays the match reason
-       */}
-          {/* {gameState.map((square, index) => {
-            if (square.isEnabled === false) {
-              return (<Square
-                key={index}
-                buttonState={square}
-                onSquareClick={() => handleClick(index)}
-              />)
-            }
-          })} */}
-
-
           {gameState.map((square, index) => {
             if (square.isEnabled === true) {
               return (<Square

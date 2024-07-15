@@ -152,7 +152,7 @@ function ShuffleButton({ onShufClick, activeButtons }) {
 }
 
 function Board() {
-  const [gameState, setGameState] = useState(initialButtonState);
+  const [gameState, setGameState] = useState(shuffle(initialButtonState));
   const [disabledReasons, setDisabledReasons] = useState([]);
   const [boardRows, setBoardRows] = useState("board-four")
   useEffect(disabledReasonArray, [gameState]);
@@ -206,12 +206,8 @@ function Board() {
     }
     return trueArray;
   }
-
-  function shuffle() {
-    //get the gameState objects
-    //copy the entire gameState and set to shuffledArray variable
-    //shuffle the entire array so that each button has a new index
-    let shuffledArray = gameState.map(old => structuredClone(old));
+  function shuffle(arr) {
+    let shuffledArray = arr.map(old => structuredClone(old));
     let currentIndex = shuffledArray.length;
     while (currentIndex !== 0) {
       let randomIndex = Math.floor(Math.random() * currentIndex);
@@ -224,6 +220,14 @@ function Board() {
 
       }
     }
+    return shuffledArray;
+  }
+  
+  function shuffleGameState() {
+    //get the gameState objects
+    //copy the entire gameState and set to shuffledArray variable
+    //shuffle the entire array so that each button has a new index
+    let shuffledArray = shuffle(gameState);
     setGameState(shuffledArray);
   }
 
@@ -288,7 +292,7 @@ function Board() {
           />
           <ShuffleButton
             activeButtons={gameState.filter((item) => item.isActive)}
-            onShufClick={() => shuffle()}
+            onShufClick={() => shuffleGameState()}
           />
         </div>
       </div>

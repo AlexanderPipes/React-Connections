@@ -207,6 +207,9 @@ function Board() {
     return trueArray;
   }
   function shuffle(arr) {
+    //get the passed in array object
+    //copy the entire passed in array and set to shuffledArray variable
+    //shuffle the entire array so that each item has a new index
     let shuffledArray = arr.map(old => structuredClone(old));
     let currentIndex = shuffledArray.length;
     while (currentIndex !== 0) {
@@ -224,9 +227,6 @@ function Board() {
   }
   
   function shuffleGameState() {
-    //get the gameState objects
-    //copy the entire gameState and set to shuffledArray variable
-    //shuffle the entire array so that each button has a new index
     let shuffledArray = shuffle(gameState);
     setGameState(shuffledArray);
   }
